@@ -123,4 +123,21 @@ public class VendingMachineTest {
         assertThrows("Invalid amount.  Amount must be >= 0", VendingMachineException.class, call);
         assertThrows("Invalid amount.  Amount must be >= 0", VendingMachineException.class, call2);
     }
+
+    @Test
+    public void test_getBalance_returnsBalanceWhenCalled() {
+        int initialBal = 5;
+        machine1.insertMoney(initialBal);
+
+        assertEquals(machine1.getBalance(), initialBal);
+    }
+    
+    @Test
+    public void test_returnChange_returnsPreviousBalanceWhenCalled() {
+        int initialBal = 5;
+        machine1.insertMoney(initialBal);
+
+        assertEquals(machine1.returnChange(), initialBal);
+        assertEquals(machine1.getBalance(), 0);
+    }
 }
